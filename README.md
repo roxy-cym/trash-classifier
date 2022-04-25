@@ -68,7 +68,7 @@ I thought adding more images would increase the model accuracy. On the contrary,
 - Relabeling the images
 For those testing data, they have the wrong prediction. I relabeled them based on my cognition. Here I used the Lobe platform, which can relabel pictures very quickly.
 
- # results
+ # Results
 According to the experiment, the choice of the model has the greatest impact on the accuracy. Therefore, in the experiment, we must first select a suitable model and then change the settings of other parameters to obtain a model with high accuracy. However, it should also be noted that the value of the parameter is not as large as possible, and more experiments are required to find the optimal value.
 <div align=center><img width="400" height="200" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/result.png"/></div>
 
