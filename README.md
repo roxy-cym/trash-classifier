@@ -1,4 +1,9 @@
 # Trash-classifier
+ <div align=center>                                                                                                       
+<img width="350" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/top.jpg">                                          
+<img width="350" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/right.jpg"> 
+</div>
+
 # Introduction
 Garbage classification plays an important role in our environment. It contributes to further resource utilization and converts garbage into public resources. It is a long-term and systematic project. It seems that it is difficult to see obvious results in the short term. But in the long run, garbage classification is of great significance to people in improving and protecting their living environment.
 
@@ -13,16 +18,21 @@ Using model learning model to identify five types of garbage ( glass, metal, pla
 # Application overview
 There are two essential building blocks of this project, which are software and hardware. The main task of the software block is to train a model that can classify the garbage types correctly. The hardware task is to capture photos using a webcam and turn on the corresponding LED according to the output of the ML model.
 
-I used Edge impulse to train my ML model. The accuracy of the model at the beginning is relatively low, about 6%. In order to improve the accuracy, I did some experiments, which included changing models and parameter settings. The accuracy increased from 6% to 78.9%. After finishing model training, I converted the model files into TensorFlow lite format and uploaded the lite files onto the raspberry pi. I created a python script to control all the hardware components and combine the software and hardware functions. 
+I used Edge impulse to train my ML model. The accuracy of the model at the beginning is relatively low, about 6%. In order to improve the accuracy, I did some experiments, which included changing models and parameter settings. The accuracy increased from 6% to 78.9%. After finishing model training, I converted the model files into TensorFlow lite format and uploaded the lite files onto the raspberry pi. I created a python script to control all the hardware components and combine the software and hardware functions. Example pictures for webcam vision are shown below:
 
 The workflow of the hardware part is that when I charge the raspberry pi and run the python script in the terminal. It will load the script and call the webcam. When the webcam is ready to capture an image, the light at the left top of the device (red LED) will turn on. Once the cam has taken an image, it will be put in ML model and output a result. The output determines which light will turn on: yellow (glass), blue (cardboard), green (metal), white(paper), or red ( plastic). After the LED turns off, the status light starts pulsing again, and the webcam retakes the photo.
+<div align=center>                                                                                                       
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                         <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal1.jpg">
+</div>
 
 In order to protect raspberry pi, hold the camera and place the LEDs, I referred to pi cases online [1] and made some changes to satisfy my requirements. 
+<div align="center"><img width="350" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/case.jpg"></div>
 
 # Data
 The initial data I used is the Garbage Classification Dataset on Kaggle[2]. The dataset consisted of 2340 images and five classifications: cardboard (393), glass (491), metal (400), paper(584), and plastic (472)[2]. Example pictures for each category are shown below:
  <div align=center>                                                                                                       
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                           <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                         <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
 <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal1.jpg">
 </div>
 <div align=center>
@@ -87,6 +97,7 @@ According to the experiment, the choice of the model has the greatest impact on 
 <div align=center><img width="400" height="200" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/result.png"/></div>
 
 Sometimes the device will output a wrong prediction. Errors are mainly concentrated in misjudgment of metal, paper and plastic. Because most of the objects have their own colour, which will increase the difficulty of classification. and the model can easily give out worry predictions. For instance, if there is a transparent glass, the output might be plastic; if there is a transparent plastic bottle, the output might be glass, and if the glass or plastic has colour, the output might be metal.
+<div align=center><img width="400" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/error.png"/></div>
 
 Due to platform limitations, the settings of some parameters cannot be tested, and the job always fails. If there is enough time, I will use Colab to assist the experiments.
 
