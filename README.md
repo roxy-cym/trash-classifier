@@ -62,6 +62,7 @@ The table below shows the result of all the experiments that I did. The accuracy
 - Model selection
 As can be seen in these two tables, the selection of the model has the most significant impact on the model accuracy. Although we can change various parameter settings, it can only slightly improve the accuracy. According to the model testing, the accuracy under the NN model is around 50%, but the accuracy under the transfer learning is over 70%, so I choose to use transfer learning.
 - Parameter settings
+It can be seen from the experimental result that the larger the value of the resolution and width multiplier of the model, the higher the accuracy. The number of neurons and epochs is not as good as possible with the number increasing. Toggled on the auto-balance dataset and data argumentation didn't achieve a better result.
 - Adding more images
 I thought adding more images would increase the model accuracy. On the contrary, the accuracy decreased. Then I realized that the images that I captured have lots of noise, which affects the recognition correctness of the model to a large extent. For example, many items in a image, the background has a colour and so on. So only pure data can improve accuracy.
 
