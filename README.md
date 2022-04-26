@@ -5,7 +5,7 @@ Garbage classification plays an important role in our environment. It contribute
 Last term, I made a bin that can automatically open-close. This term I continued this theme and made a device that can classify the garbage types according to the real-time images.
 <div align=center><img width="350" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/img1.png"/></div>
 
-This project uses a machine learning model trained in Edge impulse and Lobe to identify five types of garbage, which are glass, metal, plastic, paper, cardboard, respectively. The model is then loaded onto a Raspberry pi to make it usable wherever there are rubbish bins. 
+This project uses Edge impulse and Lobe to train a machine learning model to identify five types of garbage, which are glass, metal, plastic, paper, cardboard, respectively. Then I loaded the model onto a Raspberry pi to make it control the hardware. 
 
 
 #  Research question
@@ -15,12 +15,12 @@ There are two essential building blocks of this project, which are software and 
 
 I used Edge impulse to train my ML model. The accuracy of the model at the beginning is relatively low, about 6%. In order to improve the accuracy, I did some experiments, which included changing models and parameter settings. The accuracy increased from 6% to 78.9%. After finishing model training, I converted the model files into TensorFlow lite format and uploaded the lite files onto the raspberry pi. I created a python script to control all the hardware components and combine the software and hardware functions. 
 
-The workflow of the hardware part is that when I charge the raspberry pi and run the python script in the terminal. It will load the TensorFlow library and the Lobe ML model. When the program is ready to capture an image, the status light at the left top of the device (red LED) will pulse. Once the cam has taken an image, the program will put the image to the Lobe ML model and output the resulting prediction. The output determines which light will turn on: yellow (glass), blue (cardboard), green (metal), white(paper), or red ( plastic). After the LED turns off, the status light starts pulsing again, and the webcam retakes the photo.
+The workflow of the hardware part is that when I charge the raspberry pi and run the python script in the terminal. It will load the script and call the webcam. When the webcam is ready to capture an image, the light at the left top of the device (red LED) will turn on. Once the cam has taken an image, it will be put in ML model and output a result. The output determines which light will turn on: yellow (glass), blue (cardboard), green (metal), white(paper), or red ( plastic). After the LED turns off, the status light starts pulsing again, and the webcam retakes the photo.
 
 In order to protect raspberry pi, hold the camera and place the LEDs, I referred to pi cases online [1] and made some changes to satisfy my requirements. 
 
 # Data
-The initial data I used is the Garbage Classification Dataset on Kaggle[2]. The dataset consisted of 2340 images and five classifications: cardboard (393), glass (491), metal (400), paper(584), and plastic (472). Example pictures for each category are shown below:
+The initial data I used is the Garbage Classification Dataset on Kaggle[2]. The dataset consisted of 2340 images and five classifications: cardboard (393), glass (491), metal (400), paper(584), and plastic (472)[2]. Example pictures for each category are shown below:
  <div align=center>                                                                                                       
 <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                           <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
 <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal1.jpg">
@@ -31,14 +31,22 @@ The initial data I used is the Garbage Classification Dataset on Kaggle[2]. The 
 </div>                                                                                                             
 The 2340 images were split into training and testing data according to the 80% and 20% proportions, which is 1820 images of training data and 468 images of testing data.
 
-Most of the experiments in this project are carried out on the basis of Kaggle data. In order to test the impact of the amount of data on the accuracy of the model. I added my own data. The data consisted of cardboard (100), glass (100), metal (100), paper(100), and plastic (100). The majority of the data was collected using a mobile phone, taking photos of items at my home, and the remaining data were collected on the Internet. In the following experiments, the training data consisted of 2220 images, and the testing data consisted of 568 images.
+Most of the experiments in this project are carried out on the basis of Kaggle data. In order to test the impact of the amount of data on the accuracy of the model. I added my own data. The data consisted of cardboard (100), glass (100), metal (100), paper(100), and plastic (100). The majority of the data was collected using a mobile phone, taking photos of items at my home, and the remaining data were collected on the Internet.Example pictures for each category are shown below:
+<div align=center>                                                                                                       
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                           <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal1.jpg">
+</div>
+<div align=center>
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/paper1.jpg"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/plastic1.jpg"> 
+</div>  
 
 The first processing of the picture is resizing the pictures. There are two kinds of picture pixels on edge impulse, 96x96 and 160x160, respectively. The accuracy of the model is higher at 160x160 pixels, so in this project, I set picture pixels as 160x160. Another parameter which is colour depth, was set to RGB. All objects in the dataset have their own colour. So, colour is also one of the significant factors for garbage classification.
 
 # Model
 - Transfer learning  
 Under transfer learning, there are many different models in the Edge impulse. As can be seen in Table below .
-The MobileNet focus on lightweight CNN networks in mobile or embedded devices. Compared with the traditional convolutional neural network, the model parameters and the amount of computation are greatly reduced on the premise that the accuracy rate is slightly reduced. In the MobileNet v2 network, compared with the MobileNet V1 network, the accuracy rate is higher, and the model is smaller.
+The MobileNet focus on lightweight CNN networks in mobile or embedded devices. Compared with the traditional convolutional neural network, the model parameters and the amount of computation are greatly reduced on the premise that the accuracy rate is slightly reduced[3]. In the MobileNet v2 network, compared with the MobileNet V1 network, the accuracy rate is higher, and the model is smaller.
 <div align=center><img width="600" height="200" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/table1.png"/></div>  
 
 - CNN  
@@ -80,10 +88,11 @@ Due to platform limitations, the settings of some parameters cannot be tested, a
 # Reference
  1. N.d. URL https://cdn.thingiverse.com/assets/54/c8/f3/cd/5a/Raspberry_Pi_Case_2.stl (accessed 4.25.22b).
  2. cchangcs, n.d. Garbage Classification [WWW Document]. Kaggle. URL https://www.kaggle.com/datasets/asdasdasasdas/garbage-classification (accessed 4.25.22).
- 3. Shalash, W.M., 2019. Driver Fatigue Detection with Single EEG Channel Using Transfer Learning, in: 2019 IEEE International Conference on Imaging Systems and Techniques (IST). IEEE.
- 4. Tiyajamorn, P., Lorprasertkul, P., Assabumrungrat, R., Poomarin, W., Chancharoen, R., 2019. Automatic Trash Classification using Convolutional Neural Network Machine Learning, in: 2019 IEEE International Conference on Cybernetics and Intelligent Systems (CIS) and IEEE Conference on Robotics, Automation and Mechatronics (RAM). IEEE.
- 5. Gao, L., Liu, Z., Shen, L., Shi, S., Lv, Y., 2021. A Research on Intelligent Classification of Urban Trash Bins Based on Machine Learning. Proceedings of International Conference on Artificial Life and Robotics 26, 712–715. https://doi.org/10.5954/icarob.2021.os12-16
+ 3. Pujara, A., 2020. MobileNet Convolutional neural network .Machine Learning Algorithms. Analytics Vidhya. 
+ 4. Shalash, W.M., 2019. Driver Fatigue Detection with Single EEG Channel Using Transfer Learning, in: 2019 IEEE International Conference on Imaging Systems and Techniques (IST). IEEE.
+ 5. Tiyajamorn, P., Lorprasertkul, P., Assabumrungrat, R., Poomarin, W., Chancharoen, R., 2019. Automatic Trash Classification using Convolutional Neural Network Machine Learning, in: 2019 IEEE International Conference on Cybernetics and Intelligent Systems (CIS) and IEEE Conference on Robotics, Automation and Mechatronics (RAM). IEEE.
+ 6. Gao, L., Liu, Z., Shen, L., Shi, S., Lv, Y., 2021. A Research on Intelligent Classification of Urban Trash Bins Based on Machine Learning. Proceedings of International Conference on Artificial Life and Robotics 26, 712–715. https://doi.org/10.5954/icarob.2021.os12-16
 
 # Resources
 video link https://youtu.be/brmlQnhjAQU  
-Edge Impulse page
+Edge Impulse page : https://studio.edgeimpulse.com/studio/85812/validation
