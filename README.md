@@ -33,12 +33,12 @@ The 2340 images were split into training and testing data according to the 80% a
 
 Most of the experiments in this project are carried out on the basis of Kaggle data. In order to test the impact of the amount of data on the accuracy of the model. I added my own data. The data consisted of cardboard (100), glass (100), metal (100), paper(100), and plastic (100). The majority of the data was collected using a mobile phone, taking photos of items at my home, and the remaining data were collected on the Internet.Example pictures for each category are shown below:
 <div align=center>                                                                                                       
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                           <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal1.jpg">
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard.jpeg">                                           <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass.JPG"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal.jpeg">
 </div>
 <div align=center>
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/paper1.jpg"> 
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/plastic1.jpg"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/paper.JPG"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/plastic.JPG"> 
 </div>  
 
 The first processing of the picture is resizing the pictures. There are two kinds of picture pixels on edge impulse, 96x96 and 160x160, respectively. The accuracy of the model is higher at 160x160 pixels, so in this project, I set picture pixels as 160x160. Another parameter which is colour depth, was set to RGB. All objects in the dataset have their own colour. So, colour is also one of the significant factors for garbage classification.
@@ -73,6 +73,11 @@ As can be seen in these two tables, the selection of the model has the most sign
 It can be seen from the experimental result that the larger the value of the resolution and width multiplier of the model, the higher the accuracy. The number of neurons and epochs is not as good as possible with the number increasing. Toggled on the auto-balance dataset and data argumentation didn't achieve a better result.
 - Adding more images
 I thought adding more images would increase the model accuracy. On the contrary, the accuracy decreased. Then I realized that the images that I captured have lots of noise, which affects the recognition correctness of the model to a large extent. For example, many items in a image, the background has a colour and so on. So only pure data can improve accuracy.
+<div align=center>
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/multi-material.png"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/multi-objects.png">
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/not pure background.png"> 
+</div> 
 
 - Relabeling the images
 For those testing data, they have the wrong prediction. I relabeled them based on my cognition. Here I used the Lobe platform, which can relabel pictures very quickly.
