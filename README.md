@@ -37,12 +37,12 @@ The first processing of the picture is resizing the pictures. There are two kind
 
 # Model
 - Transfer learning  
-Under transfer learning, there are many different models in the Edge impulse. As can be seen in Table 1 .
+Under transfer learning, there are many different models in the Edge impulse. As can be seen in Table below .
 The MobileNet focus on lightweight CNN networks in mobile or embedded devices. Compared with the traditional convolutional neural network, the model parameters and the amount of computation are greatly reduced on the premise that the accuracy rate is slightly reduced. In the MobileNet v2 network, compared with the MobileNet V1 network, the accuracy rate is higher, and the model is smaller.
 <div align=center><img width="600" height="200" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/table1.png"/></div>  
 
 - CNN  
-In the field of pattern recognition and classifications, convolution neural networks (CNN) also show excellent success. For CNN, you need to do more preprocessing of the dataset, but with transfer learning, you only need to do little processing of the dataset, like resizing to 96 x 96 or 160 x160 according to selected Pre-trained Models (MobileNetV1&MobileNetV2). This saves much time for preprocessing data. Pretrained Models provides much greater accuracy for completely new dataset such as image dataset. As I use transfer learning for this project gives higher accuracy. In comparison, CNN gives lesser accuracy than transfer learning.  
+In the field of pattern recognition and classifications, convolution neural networks (CNN) also show excellent success. For CNN, the dataset need to do more preprocessing, but with transfer learning,  little processing of the dataset need to be done , like resizing to 96 x 96 or 160 x160 according to selected Pre-trained Models (MobileNetV1&MobileNetV2). This saves much time for preprocessing data. Pretrained Models provides much greater accuracy for completely new dataset such as image dataset. As I use transfer learning for this project gives higher accuracy. In comparison, CNN gives lesser accuracy than transfer learning.  
 - Difference  
 **Advantages of Transfer Learning**
 	1. Transfer learning is useful for insufficient data and imbalanced class problems. So that we can limit training data and training time, it can give nearly a hundred percent of accuracy for less amount of data.
@@ -80,6 +80,9 @@ Due to platform limitations, the settings of some parameters cannot be tested, a
  1. N.d. URL https://cdn.thingiverse.com/assets/54/c8/f3/cd/5a/Raspberry_Pi_Case_2.stl (accessed 4.25.22b).
  2. cchangcs, n.d. Garbage Classification [WWW Document]. Kaggle. URL https://www.kaggle.com/datasets/asdasdasasdas/garbage-classification (accessed 4.25.22).
  3. Shalash, W.M., 2019. Driver Fatigue Detection with Single EEG Channel Using Transfer Learning, in: 2019 IEEE International Conference on Imaging Systems and Techniques (IST). IEEE.
+ 4. Tiyajamorn, P., Lorprasertkul, P., Assabumrungrat, R., Poomarin, W., Chancharoen, R., 2019. Automatic Trash Classification using Convolutional Neural Network Machine Learning, in: 2019 IEEE International Conference on Cybernetics and Intelligent Systems (CIS) and IEEE Conference on Robotics, Automation and Mechatronics (RAM). IEEE.
+ 5. Gao, L., Liu, Z., Shen, L., Shi, S., Lv, Y., 2021. A Research on Intelligent Classification of Urban Trash Bins Based on Machine Learning. Proceedings of International Conference on Artificial Life and Robotics 26, 712–715. https://doi.org/10.5954/icarob.2021.os12-16
 
 # Resources
-video link https://youtu.be/brmlQnhjAQU
+video link https://youtu.be/brmlQnhjAQU  
+Edge Impulse page
