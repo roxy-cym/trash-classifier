@@ -16,12 +16,13 @@ Using model learning model to identify five types of garbage ( glass, metal, pla
 There are two essential building blocks of this project, which are software and hardware. The main task of the software block is to train a model that can classify the garbage types correctly. The hardware task is to capture photos using a webcam and turn on the corresponding LED according to the output of the ML model prediction.
 
 I used Edge impulse to train my ML model. The accuracy of the model at the beginning is relatively low, about 6%. In order to improve the accuracy, I did some experiments, which included changing models and parameter settings. The accuracy increased from 6% to 78.9%. After finishing model training, I converted the model files into TensorFlow lite format and uploaded the lite files onto the raspberry pi. I created a python script to call the Ml model, let the webcam take pictures, and turn on the LED. Example pictures for camera vision are shown below:
-
-The workflow of the hardware part is that when I charge the raspberry pi and run the python script in the terminal. It will load the model and call the webcam. When the webcam is ready to capture an image, the light at the left top of the device (red LED) will turn on. Once the cam has taken an image, it will be put in ML model and output a result. The output determines which light will turn on: yellow (glass), blue (cardboard), green (metal), white(paper), or red ( plastic). After the LED turns off, the status light starts pulsing again, and the webcam retakes the photo.
 <div align=center>                                                                                                       
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/cardboard1.jpg">                                         <img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/glass1.jpg"> 
-<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/metal1.jpg">
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/image1.jpg">                                         
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/image2 .jpg"> 
+<img width="250" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/image3 .jpg">
 </div>
+The workflow of the hardware part is that when I charge the raspberry pi and run the python script in the terminal. It will load the model and call the webcam. When the webcam is ready to capture an image, the light at the left top of the device (red LED) will turn on. Once the cam has taken an image, it will be put in ML model and output a result. The output determines which light will turn on: yellow (glass), blue (cardboard), green (metal), white(paper), or red ( plastic). After the LED turns off, the status light starts pulsing again, and the webcam retakes the photo.
+
 
 In order to protect raspberry pi, hold the camera and place the LEDs, I referred to pi cases online [1] and made some changes to satisfy my requirements. 
 <div align="center"><img width="350" height="250" src="https://github.com/roxy-cym/trash-classifier/blob/main/imgs/case.jpg"></div>
